@@ -3,11 +3,12 @@ setlocal disabledelayedexpansion
 title Instalador de Mods (web) - Cliente
 color 0A
 echo ======================================
-echo    INSTALADOR DE MODS POR INTERNET
+echo    INSTAL MODS for github
 echo ======================================
 echo.
 echo Instala o actualiza los mods en tu carpeta de Minecraft.
-echo Solo descarga lo nuevo o lo que cambio y borra lo que sobra.
+echo Solo descarga lo nuevo si ya tienes un mod no lo descarga.
+echo Canviara los nombres a numericos.
 echo.
 set "DEST=%appdata%\.minecraft\mods"
 set "F0=%~f0"
@@ -166,7 +167,7 @@ if ($bajar.Count -eq 0 -and $extras.Count -eq 0) {
     exit
 }
 Write-Host ''
-Write-Host 'Se descargara e instalara un mod a la vez. Al final se borraran de la carpeta mods los archivos que no son del paquete.'
+Write-Host 'Se descargara e instalara un mod a la vez.'
 Write-Host 'Para cancelar, cierra esta ventana ahora.'
 Write-Host 'Pulsa cualquier tecla para continuar...'
 try { [void][Console]::ReadKey($true) } catch { [void](Read-Host) }
@@ -220,7 +221,7 @@ if ($extras.Count -gt 0) {
     try {
         foreach ($e in $extras) { Remove-Item -LiteralPath $e.FullName -Force }
     } catch {
-        Write-Host 'No se pudo borrar algo. Cierra Minecraft y el launcher y vuelve a ejecutar.'
+        Write-Host 'Cierra Minecraft y el launcher y vuelve a ejecutar.'
         Write-Host $_.Exception.Message
         exit
     }
